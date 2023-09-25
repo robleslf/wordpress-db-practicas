@@ -23,14 +23,15 @@ Para ver más claro en qué consisten estos metadatos podemos poner un par de ej
 
 1. Supongamos que deseamos destacar ciertos comentarios en nuestro sitio web como "Comentarios Destacados". Podemos utilizar metadatos para marcar estos comentarios. Por ejemplo:
 
-    Comentario 1: Usuario A deja un comentario que consideramos destacado, y marcamos el comentario con una etiqueta "Destacado".
-    Comentario 2: Usuario B deja un comentario normal sin etiquetas.
+- Comentario 1: Usuario A deja un comentario que consideramos destacado, y marcamos el comentario con una etiqueta "Destacado".
+- Comentario 2: Usuario B deja un comentario normal sin etiquetas.
+
     Luego, podemos crear una sección especial en nuestro sitio web donde solo se muestren los "Comentarios Destacados", que nos mostraría solo el comentario 1..
 
 2. Supongamos que tenemos un sitio web de reseñas de películas y se permite que los usuarios dejen comentarios sobre las películas. Podemos utilizar metadatos para capturar la calificación que cada usuario otorga a la película en su comentario. Por ejemplo:
 
-    Comentario 1: Usuario A comenta la película "Rocky IV" y otorga una calificación de 4 estrellas.
-    Comentario 2: Usuario B comenta la misma película y otorga una calificación de 5 estrellas.
+- Comentario 1: Usuario A comenta la película "Rocky IV" y otorga una calificación de 4 estrellas.
+- Comentario 2: Usuario B comenta la misma película y otorga una calificación de 5 estrellas.
 
     Luego, podemos usar estos metadatos para calcular y mostrar la calificación promedio de la película en la página de la película.
 
@@ -50,11 +51,11 @@ Para ver más claro en qué consisten estos metadatos podemos poner un par de ej
 
 * Relación con la tabla *wp_comments* (Campo _comment_id_):
 
-    El campo _comment_id_ en la tabla *commentmeta* se utiliza para relacionar cada entrada de metadatos con un comentario específico.
+- El campo _comment_id_ en la tabla *commentmeta* se utiliza para relacionar cada entrada de metadatos con un comentario específico.
     
-    Ejemplo: Si tenemos un comentario en *wp_comments* con _comment_id_ igual a 42, los metadatos relacionados con ese comentario tendrán una entrada en *wp_commentmeta* donde el campo _comment_id_ sea 42.
+- Ejemplo: Si tenemos un comentario en *wp_comments* con _comment_id_ igual a 42, los metadatos relacionados con ese comentario tendrán una entrada en *wp_commentmeta* donde el campo _comment_id_ sea 42.
     
-    Uso: Esta relación permite asociar metadatos personalizados a comentarios específicos. Por ejemplo, se podrían utilizar metadatos para almacenar información adicional sobre un comentario, como calificaciones, votos o datos personalizados.
+- Uso: Esta relación permite asociar metadatos personalizados a comentarios específicos. Por ejemplo, se podrían utilizar metadatos para almacenar información adicional sobre un comentario, como calificaciones, votos o datos personalizados.
 
 ==== Restricciones de la tabla wp_commentmeta
 
@@ -112,13 +113,12 @@ La tabla wp_comments en WordPress se utiliza para almacenar los comentarios real
 
 - Uso: Esta relación es crucial para mostrar comentarios específicos en las páginas de entradas correspondientes. WordPress utiliza esta relación para recuperar y mostrar los comentarios adecuados bajo cada entrada o página.
 
-* Relación con *wp_term_taxonomy*, *wp_terms* y *wp_term_relationships* (Campos _post_category_ y _post_tag_):
+* Relación con la tabla wp_commentmeta (Campo comment_ID):
+- El campo comment_ID en la tabla wp_commentmeta se utiliza para relacionar cada entrada de metadatos con un comentario específico en wp_comments.
 
-- Campos Relevantes: Aunque no se mencionan directamente en la tabla *wp_comments*, las categorías y etiquetas de un comentario se gestionan mediante relaciones con las tablas *wp_term_taxonomy*, *wp_terms* y *wp_term_relationships*. Estas relaciones se establecen mediante los campos _term_taxonomy_id_, _object_id_ y _term_id_.
+- Ejemplo: Si tenemos un comentario en wp_comments con comment_ID igual a 42, los metadatos relacionados con ese comentario tendrán una entrada en wp_commentmeta donde el campo comment_ID sea 42.
 
-- Ejemplo: Supongamos que tenemos un comentario con _comment_ID_ 42 que está asociado con la etiqueta "Opinión". La relación se establece a través de la tabla _wp_term_relationships_, donde el _object_id_ es 42 y se asocia con el _term_taxonomy_id_ correspondiente para la etiqueta "Opinión".
-
-- Uso: Estas relaciones permiten categorizar y etiquetar comentarios, lo que facilita la navegación del sitio y la búsqueda de comentarios relacionados. Por ejemplo, al hacer click en la etiqueta "Opinión", se mostrarán todos los comentarios relacionados con esa etiqueta.
+- Uso: Esta relación permite asociar metadatos personalizados a comentarios específicos. Por ejemplo, se podrían utilizar metadatos para almacenar información adicional sobre un comentario, como calificaciones, votos o datos personalizados, de manera similar a la relación entre wp_commentmeta y wp_comments.
 
 * Relación Jerárquica (Campo _comment_parent_):
 
@@ -333,7 +333,7 @@ La tabla *wp_posts* almacena información sobre todas las entradas y páginas de
 
 * *post_name:* Almacena un slug (URL amigable) generado automáticamente a partir del título de la entrada. Es de tipo _varchar_ con un ancho de 200 caracteres y es importante para la construcción de las URL de las entradas.
 
-*to_ping:* Este campo almacena una lista de URLs a las que se enviarán pingbacks cuando se publique la entrada. Es de tipo _text_ y se utiliza en procesos de notificación a otros sitios web cuando se enlaza a ellos desde la entrada.
+* *to_ping:* Este campo almacena una lista de URLs a las que se enviarán pingbacks cuando se publique la entrada. Es de tipo _text_ y se utiliza en procesos de notificación a otros sitios web cuando se enlaza a ellos desde la entrada.
 
 * *pinged:* Almacena una lista de URLs de sitios web que han enviado pingbacks a esta entrada. Es de tipo _text_ y se actualiza automáticamente cuando se reciben pingbacks.
 
@@ -364,11 +364,12 @@ La tabla *wp_posts* almacena información sobre todas las entradas y páginas de
 - Ejemplo: Supongamos que tenemos una entrada con _post_id_ 14 titulada "Mi Entrada" y un comentario en el que _comment_post_ID_ es igual a 14. Esta relación indica que el comentario pertenece a la entrada con post_id 14, es decir, "Mi Entrada".
 - Uso: Esta relación es crucial para mostrar comentarios específicos en las páginas de entradas correspondientes. WordPress utiliza esta relación para recuperar y mostrar los comentarios adecuados bajo cada entrada o página.
 
-* Relación con *wp_term_taxonomy*, *wp_terms* y *wp_term_relationships* (Campos _post_category_ y _post_tag_):
+* Relación con la tabla *wp_term_relationships* (Campo _object_id_):
+- El campo _ID_ en la tabla *wp_posts* se utiliza para relacionar cada entrada o publicación con una o más relaciones de términos almacenadas en la tabla *wp_term_relationships*.
 
-- Campos Relevantes: Aunque no se mencionan directamente en la tabla _wp_posts_, las categorías y etiquetas de una entrada o página se gestionan mediante relaciones con las tablas *wp_term_taxonomy*, *wp_terms* y *wp_term_relationships*. Estas relaciones se establecen mediante los campos _term_taxonomy_id_, _object_id_, y _term_id_.
-- Ejemplo: Supongamos que tenemos una entrada con post_id 129 que está asociada con la categoría "Tecnología" y la etiqueta "Innovación". La relación se establece a través de la tabla *wp_term_relationships*, donde el _object_id_ es 129 y se asocia con los _term_taxonomy_id_ correspondientes para la categoría "Tecnología" y la etiqueta "Innovación". 
-- Uso: Estas relaciones permiten categorizar y etiquetar entradas o páginas, lo que facilita la navegación del sitio y la búsqueda de contenido relacionado. Por ejemplo, al hacer clic en la categoría "Tecnología", se mostrarán todas las entradas relacionadas con esa categoría.
+- Ejemplo: Si tenemos una entrada en *wp_posts* con _ID_ igual a 30, significa que esta entrada está relacionada con una o más relaciones de términos en la tabla *wp_term_relationships* donde el campo _object_id_ sea igual a 30.
+
+- Uso: Esta relación permite asignar términos, que pueden ser categorías o etiquetas, a las publicaciones. Por ejemplo, una entrada puede estar relacionada con las categorías "Tecnología" y "Gadgets", lo que ayuda a organizar y clasificar el contenido en WordPress. La tabla wp_term_relationships actúa como un puente entre las publicaciones y los términos que las categorizan.
 
 * Relación Jerárquica (Campo _post_parent_):
 
@@ -459,13 +460,13 @@ A continuación, se describen los aspectos clave de esta tabla:
 
 ==== Relaciones de la tabla wp_termmeta
 
-Relación con *wp_terms* (Campo _term_id_):
+* Relación con *wp_terms* (Campo _term_id_):
 
-El campo _term_id_ en la tabla *wp_termmeta* se utiliza para relacionar cada registro de metadato con un término de taxonomía específico en WordPress. Este campo almacena el _term_id_ del término al que está vinculado el metadato.
+- El campo _term_id_ en la tabla *wp_termmeta* se utiliza para relacionar cada registro de metadato con un término de taxonomía específico en WordPress. Este campo almacena el _term_id_ del término al que está vinculado el metadato.
 
-Ejemplo: Supongamos que tenemos un término de categoría con _term_id_ 5 llamado "Tecnología" y un registro en *wp_termmeta* con _term_id_ igual a 5. Esta relación indica que el metadato en cuestión pertenece al término "Tecnología".
+- Ejemplo: Supongamos que tenemos un término de categoría con _term_id_ 5 llamado "Tecnología" y un registro en *wp_termmeta* con _term_id_ igual a 5. Esta relación indica que el metadato en cuestión pertenece al término "Tecnología".
 
-Uso: Esta relación permite asociar metadatos personalizados a términos de taxonomía específicos. Los metadatos pueden contener información adicional o personalizada relacionada con una categoría o etiqueta en particular.
+- Uso: Esta relación permite asociar metadatos personalizados a términos de taxonomía específicos. Los metadatos pueden contener información adicional o personalizada relacionada con una categoría o etiqueta en particular.
 
 ==== Restricciones de la tabla wp_termmeta
 
@@ -717,3 +718,24 @@ La tabla *wp_users* en WordPress almacena información sobre los usuarios regist
 - Ejemplo: Si un usuario con ID 3 ha creado una publicación, en la tabla *wp_posts* habrá un registro donde el campo _post_author_ sea igual a 3, lo que indica que esa publicación fue creada por el usuario con ID 3.
 
 - Uso: Esta relación permite asociar publicaciones a usuarios específicos, lo que facilita la identificación de quién es el autor de cada publicación en el sitio.
+
+* Relación con la tabla wp_links (Campo link_owner):
+- El campo ID en la tabla wp_users se utiliza para relacionar cada usuario con los enlaces que ha creado. En la tabla wp_links, el campo link_owner almacena el ID del usuario que es propietario de un enlace.
+
+- Ejemplo: Si tenemos un usuario en wp_users con ID igual a 15, y ese usuario ha creado un enlace en wp_links, entonces en la tabla wp_links, el campo link_owner contendrá el valor 15 para ese enlace, indicando que el usuario con ID 15 es el propietario de ese enlace.
+
+- Uso: Esta relación permite asociar enlaces a usuarios específicos en WordPress. Los usuarios pueden crear y gestionar sus propios enlaces, lo que puede ser útil para administrar recursos externos o referencias relacionadas con el sitio web.
+
+==== Restricciones de la tabla wp_users
+
+* *term_id:* Clave primaria (PRIMARY KEY) y autoincremento (AUTO_INCREMENT). Esta restricción garantiza que cada término de taxonomía tenga un ID único y que se genere automáticamente para cada nuevo término.
+
+* *name:* No permite valores nulos (NOT NULL). Esto asegura que cada término tenga un nombre asociado y que no pueda quedar sin asignar.
+
+* *slug:* No permite valores nulos (NOT NULL). Esto asegura que cada término tenga un slug (identificador único) asociado y que no pueda quedar sin asignar.
+
+* *term_group:* Puede permitir valores nulos o estar vacío dependiendo de la configuración. Este campo se utiliza para agrupar términos relacionados, pero su uso puede ser opcional, por lo que no se impone una restricción estricta.
+
+
+[NOTE]
+La instalación de algunos plugins pueden añadir más tablas a la base de datos, como por ejemplo el plugin WP RSS Aggregator, que añade la tabla wp_wprss_logs
