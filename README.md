@@ -1,4 +1,4 @@
-# Rama FORMATO_TABLA
+# Rama formato_tabla
 
 Rama correspondiente al apartado c. En formato tabla en la que debe estar presentada la descripción de campos
 de cada tabla y su uso en WordPress
