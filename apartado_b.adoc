@@ -1,0 +1,3 @@
+== b. Diagrama E-R
+
+image:diagrama.png[]
