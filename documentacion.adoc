@@ -746,6 +746,8 @@ La instalación de algunos plugins pueden añadir más tablas a la base de datos
 
 image:diagrama.png[]
 
+
+
 == c. Descripción de cada tabla en formato tabla
 
 .wp_commentmeta
@@ -761,7 +763,7 @@ image:diagrama.png[]
 .wp_comments
 [options="header"]
 |====
-| Campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
+| Nombre del campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
 | comment_ID           | bigint      | -        | Clave primaria de la tabla, generada automáticamente, se incrementa secuencialmente. | Identifica de manera única cada comentario.
 | comment_post_ID      | bigint     | -        | ID de la entrada o página a la que se refiere el comentario.                                | Establece una relación con la tabla *wp_posts*, indicando a qué entrada o página pertenece el comentario.
 | comment_author       | tinytext        | 255      | Nombre del autor del comentario.                                                           | Identifica mediante el nombre al autor del comentario.
@@ -783,7 +785,7 @@ image:diagrama.png[]
 .wp_links
 [options="header"]
 |====
-| Campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
+| Nombre del campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
 
 | link_id              | bigint     | 20       | Clave primaria que identifica de manera única cada enlace en WordPress. Se genera automáticamente para cada nuevo enlace y se incrementa secuencialmente, lo que garantiza que cada enlace tenga su propio ID único.                        | Identifica de manera única cada enlace.
 
@@ -817,7 +819,7 @@ image:diagrama.png[]
 .wp_options
 [options="header"]
 |====
-| Campo          | Tipo         | Longitud | Descripción                                                                      | Uso
+| Nombre del campo          | Tipo         | Longitud | Descripción                                                                      | Uso
 
 | option_id      | bigint  | 20     | Clave primaria que identifica de manera única cada opción en WordPress. Se genera automáticamente para cada nueva opción y se incrementa secuencialmente. | Identifica de manera única cada opción.
 
@@ -831,7 +833,7 @@ image:diagrama.png[]
 .wp_postmeta
 [options="header"]
 |====
-| Campo          | Tipo         | Longitud | Descripción                                                                      | Uso
+| NOmbre del campo          | Tipo         | Longitud | Descripción                                                                      | Uso
 
 | meta_id        | bigint(20)   | -        | Clave primaria que se genera automáticamente para cada nuevo registro y se incrementa secuencialmente         | Identifica de manera única cada metadato de entrada o página en WordPress.
 
