@@ -1,0 +1,198 @@
+== c. Descripción de cada tabla en formato tabla
+
+.wp_commentmeta
+[options="header"]
+|====
+| Nombre del campo | Tipo        | Longitud | Descripción                                                                                                 | Uso
+| meta_id          | bigint      | 20       | Clave primaria de la tabla, generada automáticamente, se incrementa secuencialmente. | Identificación única de cada registro de metadato de comentario.
+| comment_id       | bigint      | 20       | Almacena el ID del comentario al que está asociado el metadato. No permite valores nulos y tiene un valor predeterminado de 0. | Establece una relación con la tabla *wp_comments* para identificar a qué comentario pertenece el metadato.
+| meta_key         | varchar     | 255      | Almacena el nombre o clave del metadato del comentario. Puede permitir valores nulos o estar vacío dependiendo de la configuración. | Permite identificar y buscar metadatos específicos del comentario.
+| meta_value       | longtext    | -        | Almacena el valor del metadato del comentario. Puede permitir valores nulos o estar vacío dependiendo de la configuración. | Almacena información relacionada con el comentario, que puede ser de cualquier tipo.
+|====
+
+.wp_comments
+[options="header"]
+|====
+| Campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
+| comment_ID           | bigint      | -        | Clave primaria de la tabla, generada automáticamente, se incrementa secuencialmente. | Identifica de manera única cada comentario.
+| comment_post_ID      | bigint     | -        | ID de la entrada o página a la que se refiere el comentario.                                | Establece una relación con la tabla *wp_posts*, indicando a qué entrada o página pertenece el comentario.
+| comment_author       | tinytext        | 255      | Nombre del autor del comentario.                                                           | Identifica mediante el nombre al autor del comentario.
+| comment_author_email | varchar    | 100      | Dirección de correo electrónico del autor del comentario.                                   | Almacena la dirección de correo electrónico del autor del comentario si se proporciona.
+| comment_author_url   | varchar   | 200      | URL del sitio web, blog o perfil en redes sociales del autor del comentario si se proporciona. | Almacena el sitio web del autor del comentario si se proporciona.
+| comment_author_IP    | varchar    | 100      | Dirección IP del autor del comentario.                                                     | Registra la dirección IP del autor del comentario.
+| comment_date         | datetime        | -        |Fecha y hora en que se realizó el comentario.                                                | Indica la fecha y hora en que se realizó el comentario.
+| comment_date_gmt     | datetime        | -        | Fecha y hora del comentario en formato GMT (Tiempo Medio de Greenwich).                     | Almacena la fecha y hora del comentario en formato GMT.
+| comment_content      | text            | -        | Contenido del comentario en sí.                                                                | Almacena el contenido del comentario.
+| comment_karma        | int       | 11       | Registro del "karma" o calificación                                      | Se usa para calificar los comentarios. El karma es una característica que permite a los usuarios y administradores del sitio otorgar una calificación o puntuación a los comentarios que se realizan en las publicaciones. Esta función se utiliza para dar a los comentarios una valoración positiva o negativa según su calidad o relevancia.
+| comment_approved     | varchar     | 20       | Indica si el comentario ha sido aprobado o se encuentra en espera de moderación.                      | Registra el estado del comentario (aprobado, spam, papelera, etc.).
+| comment_agent        | varchar   | 255      | Información sobre el agente de usuario o navegador web que se utilizó para enviar el comentario. | Registra el agente de usuario del navegador.
+| comment_type         | varchar    | 20       | Categoría del tipo de comentario.  | Categoriza el tipo de comentario, por ejemplo, si es un comentario estándar, un pingback o un trackback.
+| comment_parent       | bigint      | -        | Relación jerárquica entre comentarios. | Establece relaciones jerárquicas entre comentarios, indicando cuál es el comentario padre de un comentario específico..
+| user_id              | bigint      | -        | Si el comentario ha sido realizado por un usuario registrado, este campo almacena el ID de usuario correspondiente. De lo contrario, se establece en 0. | Asocia el comentario a un usuario registrado, si corresponde.
+|====
+
+
+.wp_links
+[options="header"]
+|====
+| Campo                | Tipo            | Longitud | Descripción                                                                                           | Uso
+
+| link_id              | bigint     | 20       | Clave primaria que identifica de manera única cada enlace en WordPress. Se genera automáticamente para cada nuevo enlace y se incrementa secuencialmente, lo que garantiza que cada enlace tenga su propio ID único.                        | Identifica de manera única cada enlace.
+
+| link_url             | varchar   | 255      |  URL a la que se redirige el enlace y utiliza el conjunto de caracteres utf8mb4_unicode_ci.                                              | Define la ubicación de destino del enlace.
+
+| link_name            | varchar   | 255      | Nombre o título del enlace, utiliza utf8mb4_unicode_ci.                                                               | Proporciona una descripción legible para el enlace.
+
+| link_image           | varchar    | 255      | Puede almacenar una URL de imagen relacionada con el enlace y utiliza utf8mb4_unicode_ci.                                           | A
+
+
+| link_target          | varchar     | 25       | Indica la forma en que se abrirá el enlace. Los valores típicos pueden ser "_blank_" para abrir en una nueva ventana o "_self_" para abrir en la misma ventana.                                                           | Define cómo se abrirá el enlace.
+
+| link_description     | varchar   | 255      | Permite agregar una breve descripción del enlace, utiliza utf8mb4_unicode_ci.                                                     | Proporciona información adicional sobre el enlace.
+
+| link_visible         | varchar     | 20       | Indica si el enlace es visible en el sitio web, utiliza utf8mb4_unicode_ci.                                                       | Controla la visibilidad de los enlaces en el sitio.
+
+| link_owner           | bigint      | -        | Almacena el ID del usuario que es propietario del enlace.                                             | Atribuye la propiedad del enlace a un usuario específico, relacionándose con la tabla *wp_users*.
+
+| link_rating          | int        | -        | Permite asignar una valoración o puntuación al enlace.  No permite valores nulos                                               | Se utiliza para clasificar o calificar los enlaces.
+
+| link_updated         | datetime        | -        | Almacena la fecha y hora de la última actualización del enlace.                                       | Rastrea los cambios en el enlace.
+
+| link_rel             | varchar    | 255      | Puede contener información sobre la relación del enlace con otros recursos, utiliza utf8mb4_unicode_ci.                            | Establece relaciones específicas con otros enlaces o recursos.
+
+| link_notes           | mediumtext      | -        | Permite agregar notas adicionales o comentarios sobre el enlace, utiliza utf8mb4_unicode_ci.                                      | Proporciona información detallada sobre el enlace.
+
+| link_rss             | varchar    | 255      | Almacena la dirección URL del feed RSS asociado con el enlace, si corresponde.                           | Conecta el enlace con un feed RSS relacionado.
+|====
+
+
+.wp_options
+[options="header"]
+|====
+| Campo          | Tipo         | Longitud | Descripción                                                                      | Uso
+
+| option_id      | bigint  | 20     | Clave primaria que identifica de manera única cada opción en WordPress. Se genera automáticamente para cada nueva opción y se incrementa secuencialmente. | Identifica de manera única cada opción.
+
+| option_name    | varchar | 191      | Almacena el nombre de la opción y utiliza el conjunto de caracteres utf8mb4_unicode_ci. No permite valores nulos.                                        | Permite identificar y acceder a cada opción de manera única.
+
+| option_value   | longtext     | -        | Almacena el valor asociado con la opción. Puede contener datos de diversos tipos, como texto, números o incluso estructuras de datos más complejas. No permite valores nulos.                                      | Guarda información o configuración específica correspondiente a cada opción.
+
+| autoload       | varchar  | 20       | Indica si la opción debe cargarse automáticamente al iniciar WordPress. utiliza el conjunto de caracteres utf8mb4_unicode_ci. Los valores típicos son "_yes_" para cargar automáticamente y "_no_" para no cargar automáticamente.  No permite valores nulos.      | Determina si la opción se carga en la memoria cuando WordPress arranca.
+|====
+
+.wp_postmeta
+[options="header"]
+|====
+| Campo          | Tipo         | Longitud | Descripción                                                                      | Uso
+
+| meta_id        | bigint(20)   | -        | Clave primaria que se genera automáticamente para cada nuevo registro y se incrementa secuencialmente         | Identifica de manera única cada metadato de entrada o página en WordPress.
+
+| post_id        | bigint(20)   | -        | Almacena el ID de la entrada o página a la que está asociado el metadato.       | Establece una relación con la tabla *wp_posts*, lo que indica a qué entrada o página pertenece el metadato..
+
+| meta_key       | varchar(255) | 255      | Almacena el nombre o clave del metadato de la entrada o página. Utiliza el conjunto de caracteres utf8mb4_unicode_ci. Puede permitir valores nulos.                 | Identifica y busca metadatos específicos de la entrada o página.
+
+| meta_value     | longtext     | -        | Almacena el valor del metadato de la entrada o página. Utiliza el conjunto de caracteres utf8mb4_unicode_ci. Puede permitir valores nulos.                           | Guarda información personalizada relacionada con la entrada o página, como calificaciones, etiquetas, resúmenes, o cualquier dato personalizado necesario para el sitio web..
+|====
+
+.wp_posts
+[options="header"]
+|====
+| Nombre del campo     | Tipo       | Longitud | Descripción                                                                                           | Uso
+| ID                   | bigint     | 20       | Clave primaria que se genera automáticamente para cada nueva entrada y se incrementa secuencialmente                   | Identifica de manera única cada entrada o página.
+| post_author          | bigint     | 20       | Almacena el ID del usuario que creó la entrada o página.                                           | Establece una relación con la tabla *wp_users* para identificar al autor.
+| post_date            | datetime   | -        | Almacena la fecha y hora exactas en que se creó la entrada o página. La fecha y hora se registran en el formato "YYYY-MM-DD HH:MM:SS".                               | Registra la fecha de creación y facilita la ordenación de las entradas y páginas por fecha.
+| post_date_gmt        | datetime   | -        | Almacena la fecha y hora de creación en formato GMT (Hora Media de Greenwich).                       | Registra la fecha de creación en GMT para asegurar que las fechas sean consistentes y no dependan de la zona horaria del servidor..
+| post_content         | longtext   | -        | Contiene el contenido principal de la entrada o página. Puede contener una gran cantidad de texto y otros elementos, como imágenes y etiquetas HTML. Utiliza el conjunto de caracteres utf8mb4_unicode_ci para admitir caracteres especiales y emojis.                                          | Almacena el contenido visible en el sitio web.
+| post_title           | text       | -        | Almacena el título de la entrada o página y utiliza el conjunto de caracteres utf8mb4_unicode_ci.                                                           | Almacena el título.
+| post_excerpt         | text       | -        | Almacena un extracto o resumen de la entrada, si se proporciona, y utiliza el conjunto de caracteres utf8mb4_unicode_ci.                                     | Almacena el extracto o resumen de la entrada, si se proporciona.
+| post_status          | varchar    | 20       | Indica el estado de la entrada, como "publish" (publicado), "draft" (borrador), "private" (privado), entre otros. Su valor predeterminado es "_publish_" (publicado). | Indica el estado de la entrada.
+| comment_status       | varchar    | 20       | Indica el estado de los comentarios para la entrada, como "open" (abierto) o "closed" (cerrado). Su valor predeterminado es "_open_" (abierto).    | Indica el estado de los comentarios.
+| ping_status          | varchar    | 20       | Indica el estado de pingbacks y trackbacks para la entrada, como "open" (abierto) o "closed" (cerrado) y su valor predeterminado es "_open_" (abierto). | Indica el estado de pingbacks y trackbacks, utilizados en sistemas de blogs y sitios web para notificar a otros sitios web cuando se ha enlazado a su contenido.
+| post_password        | varchar    | 255      | Permite establecer una contraseña para proteger el acceso a la entrada. Es opcional                              | Almacena la contraseña.
+| post_name            | varchar    | 200      | Almacena un slug (URL amigable) generado automáticamente a partir del título.                           | Almacena el slug.
+| to_ping              | text       | -        | Almacena una lista de URLs a las que se enviarán pingbacks cuando se publique la entrada.             | Lista de URLs para pingbacks, se utiliza en procesos de notificación a otros sitios web cuando se enlaza a ellos desde la entrada.
+| pinged               | text       | -        | Almacena una lista de URLs de sitios web que han enviado pingbacks a esta entrada. Se actualiza automáticamente cuando se reciben pingbacks.                    | Lista de URLs de pingbacks recibidos.
+| post_modified        | datetime   | -        | Almacena la fecha y hora de la última modificación de la entrada o página.                            | Registra la fecha de la última modificación. Se utiliza para rastrear cambios en el contenido.
+| post_modified_gmt    | datetime   | -        | Almacena la fecha y hora de la última modificación en formato GMT (Hora Media de Greenwich).           | Registra la fecha de la última modificación en GMT.
+| post_content_filtered| longtext   | -        | Almacena una versión filtrada del contenido de la entrada.                                           | Versión filtrada del contenido, generalmente se utiliza para optimizar o modificar el contenido original de alguna manera específica para ciertos propósitos o plugins.
+| post_parent          | bigint     | 20       | Establece la relación entre entradas principales y sus hijos o páginas secundarias.                  | Define la jerarquía. Se utiliza para establecer la jerarquía de las páginas.
+| guid                 | varchar    | 255      | Almacena una URL única globalmente identificable.                                                      | Almacena la URL única globalmente identificable que se utiliza principalmente en procesos de importación y exportación de contenidos.
+| menu_order           | int        | 11     | Orden en menús.  | Se utiliza para establecer el orden en que las entradas aparecen en los menús personalizados.        
+| post_type            | varchar    | 20       | Indica el tipo de contenido, como "post" (entrada) o "page" (página).  Su valor predeterminado es "_post_".                                 | Indica el tipo de contenido.
+| post_mime_type       | varchar    | 100      | Almacena el tipo de archivo asociado a la entrada, si corresponde.                                     | Indica el tipo de archivo asociado.
+| comment_count        | bigint     | 20       | Número de comentarios asociados, se actualiza automáticamente cuando se agregan o eliminan comentarios..| Almacena el número de comentarios asociados a la entrada.                                             
+|====
+
+.wp_termmeta
+[options="header"]
+|====
+| Nombre del campo | Tipo       | Longitud | Descripción                                                                                           | Uso
+| meta_id           | bigint     | 20       | Clave primaria que identifica de manera única cada registro de metadato de término en WordPress. Se genera automáticamente para cada nuevo registro y se incrementa secuencialmente.   | Identifica de manera única cada metadato de término.
+| term_id           | bigint     | 20       | Almacena el ID del término de taxonomía al que está asociado el metadato.                            | Establece una relación con la tabla *wp_terms* para identificar a qué término pertenece el metadato.
+| meta_key          | varchar    | 255      | Almacena el nombre o clave del metadato del término y utiliza el conjunto de caracteres utf8mb4_unicode_ci. Puede permitir valores nulos o estar vacío dependiendo de la configuración. | Permite identificar y buscar metadatos específicos del término.
+| meta_value        | longtext   | -        | Almacena el valor del metadato del término. Puede permitir valores nulos o estar vacío dependiendo de la configuración. | Almacena información personalizada relacionada con el término de taxonomía.
+|====
+
+
+.wp_terms
+[options="header"]
+|====
+| Nombre del campo | Tipo       | Longitud | Descripción                                                                                     | Uso
+| term_id           | bigint     | 20       | Clave primaria que identifica de manera única cada término de taxonomía en WordPress. Se genera automáticamente para cada nuevo término y se incrementa secuencialmente.       | Identifica de manera única cada término de taxonomía.
+| name              | varchar    | 200      | Almacena el nombre del término de taxonomía. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.                                                 | Almacena el nombre descriptivo del término.
+| slug              | varchar    | 200      | Almacena la versión amigable para URL del término y utiliza el conjunto de caracteres utf8mb4_unicode_ci.   suele estar en minúsculas y separado por guiones, por ejemplo, "noticias", "deportes", "tecnologia", "cine", etc.                                         | Utilizado en las URLs del sitio web.
+| term_group        | bigint     | 10       | Se utiliza para agrupar términos relacionados, pero su uso es menos común en versiones recientes de WordPress. Por defecto, se establece en 0, lo que significa que el término no pertenece a ningún grupo específico.| Puede agrupar términos relacionados, pero su uso es menos común en versiones recientes de WordPress.
+|====
+
+
+.wp_term_relationships
+[options="header"]
+|====
+| Nombre del campo  | Tipo       | Longitud | Descripción                                                                                     | Uso
+| object_id         | bigint     | 20       | Almacena el ID del objeto al que se aplica la relación. En la mayoría de los casos, se refiere al ID de una entrada o página en la tabla *wp_posts*.                         | Identifica la entrada o página relacionada.
+| term_taxonomy_id  | bigint     | 20       | Almacena el ID de la taxonomía del término relacionado.                                       | Relaciona la relación con el término de taxonomía correspondiente en wp_terms.
+| term_order        | int        | 11       | Almacena el orden de la relación entre el objeto y el término de taxonomía.                   | Determina la posición relativa del término en relación con otros términos asociados al mismo objeto.
+|====
+
+
+.wp_term_taxonomy
+[options="header"]
+|====
+| Nombre del campo  | Tipo       | Longitud | Descripción                                                                                     | Uso
+| term_taxonomy_id  | bigint     | 20       | Almacena el ID de entrada de taxonomía único en WordPress.                                    | Se utiliza para relacionar cada relación con la información detallada de la taxonomía en la tabla *wp_term_taxonomy*. Este campo actúa como clave foránea en *wp_term_relationships* y clave primaria en *wp_term_taxonomy*.
+| term_id           | bigint     | 20       | Almacena el ID del término de taxonomía relacionado.                                           | Relaciona la entrada de taxonomía con el término correspondiente en wp_terms.
+| taxonomy          | varchar    | 32       | Almacena el nombre de la taxonomía (categoría, etiqueta, etc.).                               | Identifica el tipo de taxonomía al que pertenece la entrada.
+| description       | longtext   | -        | Almacena una descripción adicional de la taxonomía.                                           | Proporciona información adicional sobre la taxonomía.
+| parent            | bigint     | 20       | Almacena el ID del término de taxonomía padre (jerarquía).                                    | Establece relaciones jerárquicas entre términos de taxonomía.
+| count             | bigint     | 20       | Almacena el recuento de objetos asociados a la taxonomía.                                    | Indica cuántas veces se ha utilizado esta taxonomía en objetos del sitio.
+|====
+
+
+.wp_usermeta
+[options="header"]
+|====
+| Nombre del campo  | Tipo       | Longitud | Descripción                                                                                 | Uso
+| umeta_id          | bigint     | 20       | Almacena el ID de metadato de usuario único en WordPress.                                    | El campo _user_id_ en la tabla *wp_usermeta* se utiliza para relacionar cada registro de metadatos de usuario con la tabla *wp_users*. Este campo actúa como clave foránea (FOREIGN KEY) que referencia el ID de usuario en la tabla *wp_users*.
+
+| user_id           | bigint     | 20       | Almacena el ID del usuario al que está asociado el metadato.                                | Relaciona el metadato con el usuario correspondiente en wp_users.
+| meta_key          | varchar    | 255      | Almacena la clave o nombre del metadato de usuario.                                         | Identifica y busca metadatos relacionados con un usuario específico.
+| meta_value        | longtext   | -        | Almacena el valor del metadato de usuario.                                                  | Contiene información personalizada o metadatos adicionales relacionados con el usuario.
+|====
+
+
+.wp_users
+[options="header"]
+|====
+| Nombre del campo     | Tipo       | Longitud | Descripción                                                     | Uso
+| ID                   | bigint     | 20       | Almacena el ID único de cada usuario en WordPress.  Se genera automáticamente para cada nuevo usuario y se incrementa secuencialmente.            | Identifica de manera única a cada usuario.
+| user_login           | varchar    | 60       | Almacena el nombre de usuario utilizado para iniciar sesión. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.   | Utilizado para autenticación.
+| user_pass            | varchar    | 255      | Almacena la contraseña del usuario de manera segura. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.            | Las contraseñas se almacenan en forma encriptada o hash.
+| user_nicename        | varchar    | 50       | Almacena un nombre amigable para URL del usuario. utiliza el conjunto de caracteres utf8mb4_unicode_ci.              | Utilizado en las URL del perfil del usuario.
+| user_email           | varchar    | 100      | Almacena la dirección de correo electrónico del usuario. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.         | Utilizado para fines de comunicación y notificaciones.
+| user_url             | varchar    | 100      | Almacena la URL del sitio web o enlace del perfil del usuario. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.  | Los usuarios pueden proporcionar un enlace a su sitio web personal.
+| user_registered      | datetime   | -        | Registra la fecha y hora de registro del usuario.               | Permite llevar un registro de cuándo se unió cada usuario.
+| user_activation_key  | varchar    | 255      | Almacena una clave de activación temporal para la cuenta.  Utiliza el conjunto de caracteres utf8mb4_unicode_ci.      | Utilizada cuando se requiere activación por correo electrónico.
+| user_status          | int        | -        | Almacena el estado del usuario (activo o inactivo). Los valores comunes son _0_ para cuentas inactivas y _1_ para cuentas activas.             | Indica si la cuenta está activa o inactiva.
+| display_name         | varchar    | 250      | Almacena el nombre que se muestra públicamente para el usuario. Utiliza el conjunto de caracteres utf8mb4_unicode_ci.| Utilizado para mostrar la autoría en publicaciones y comentarios.
+|====
+
