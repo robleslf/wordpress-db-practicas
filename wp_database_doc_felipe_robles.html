@@ -1945,14 +1945,14 @@ La instalación de algunos plugins pueden añadir más tablas a la base de datos
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">comment_ID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clave primaria de la tabla, generada automáticamente, se incrementa secuencialmente.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Identifica de manera única cada comentario.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">comment_post_ID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ID de la entrada o página a la que se refiere el comentario.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Establece una relación con la tabla <strong>wp_posts</strong>, indicando a qué entrada o página pertenece el comentario.</p></td>
 </tr>
@@ -2036,14 +2036,14 @@ La instalación de algunos plugins pueden añadir más tablas a la base de datos
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">comment_parent</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Relación jerárquica entre comentarios.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Establece relaciones jerárquicas entre comentarios, indicando cuál es el comentario padre de un comentario específico..</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Si el comentario ha sido realizado por un usuario registrado, este campo almacena el ID de usuario correspondiente. De lo contrario, se establece en 0.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Asocia el comentario a un usuario registrado, si corresponde.</p></td>
 </tr>
@@ -2237,21 +2237,21 @@ La instalación de algunos plugins pueden añadir más tablas a la base de datos
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">meta_id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bigint(20)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clave primaria que se genera automáticamente para cada nuevo registro y se incrementa secuencialmente</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Identifica de manera única cada metadato de entrada o página en WordPress.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">post_id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bigint(20)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Almacena el ID de la entrada o página a la que está asociado el metadato.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Establece una relación con la tabla <strong>wp_posts</strong>, lo que indica a qué entrada o página pertenece el metadato..</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">meta_key</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">varchar(255)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varchar</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">255</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Almacena el nombre o clave del metadato de la entrada o página. Utiliza el conjunto de caracteres utf8mb4_unicode_ci. Puede permitir valores nulos.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Identifica y busca metadatos específicos de la entrada o página.</p></td>
